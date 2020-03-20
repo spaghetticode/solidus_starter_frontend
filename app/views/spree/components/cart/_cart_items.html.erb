@@ -1,0 +1,20 @@
+<% order = order_form.object %>
+
+<section class="cart-items">
+  <%= render partial: 'spree/orders/line_item', collection: order.line_items, locals: { order_form: order_form } %>
+
+  <% if (
+      order.adjustments.nonzero.exists? ||
+      order.line_item_adjustments.nonzero.exists? ||
+      order.shipment_adjustments.nonzero.exists? ||
+      order.shipments.any?
+  ) %>
+    <p>
+      <%= t('spree.cart_subtotal', count: order.line_items.sum(:quantity)) %>
+    </p>
+    <p>
+      <%= order.display_item_total %>
+    </p>
+    <%= render "spree/orders/adjustments" %>
+  <% end %>
+</section>
