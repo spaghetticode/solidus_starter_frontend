@@ -1,7 +1,7 @@
 <% order = order_form.object %>
 
 <section class="cart-items">
-  <%= render partial: 'spree/orders/line_item', collection: order.line_items, locals: { order_form: order_form } %>
+  <%= render partial: 'spree/components/cart/cart_item', collection: order.line_items, locals: { order_form: order_form } %>
 
   <% if (
       order.adjustments.nonzero.exists? ||
