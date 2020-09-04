@@ -30,6 +30,7 @@ RSpec.configure do |config|
 
   if Spree.solidus_gem_version < Gem::Version.new('2.11')
     config.extend Spree::TestingSupport::AuthorizationHelpers::Request, type: :system
+    config.extend Authorization, type: :request
 
     config.after(:each, type: :system) do |example|
       missing_translations = page.body.scan(/translation missing: #{I18n.locale}\.(.*?)[\s<\"&]/)
